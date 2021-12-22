@@ -6,6 +6,7 @@ from qgis.core import (QgsProcessing,
                        QgsProcessingAlgorithm,
                        QgsProcessingParameterFeatureSink,
                        QgsProcessingParameterFeatureSource,
+                       QgsProcessingParameterEnum,
                        QgsCoordinateReferenceSystem,
                        QgsPointXY,
                        QgsProcessingFeatureSourceDefinition,
@@ -31,9 +32,10 @@ class MakeGrid(QgsProcessingAlgorithm):
         )
 
         self.addParameter(
-            QgsProcessingParameterScale(
-                'INPUT_SCALE',
-                self.tr('Selecione a escala para gerar as quadriculas:')
+            QgsProcessingParameterEnum(
+                self.INPUT_SCALE,
+                self.tr('Selecione a escala de edição:'),
+                options = [self.tr('1:25.000'), self.tr('1:50.000'), self.tr('1:100.000'), self.tr('1:250.000')]
             )
         )
 
@@ -49,9 +51,18 @@ class MakeGrid(QgsProcessingAlgorithm):
     def processAlgorithm(self, parameters, context, feedback):
         inputFrameLayer = self.parameterAsSource( parameters,self.INPUT_FRAME, context )
         boolVar = self.parameterAsBool( parameters,self.INPUT_FRAME, context )
-        gridScale = self.parameterAsDouble(parameters, 'INPUT_SCALE', context)
-        feedback.setProgressText('Verificando inconsistencias ')
+        gridScaleParam = self.parameterAsInt(parameters, self.INPUT_SCALE, context)
         frameLayer = self.runAddCount(inputFrameLayer, boolVar)
+
+        if (gridScaleParam==0):
+            gridScale = 25000
+        elif (gridScaleParam==1):
+            gridScale = 50000
+        if (gridScaleParam==2):
+            gridScale = 100000
+        elif (gridScaleParam==3):
+            gridScale = 250000
+
         self.runCreateSpatialIndex(frameLayer)
         # Converter moldura para lat long
         crs = QgsCoordinateReferenceSystem("EPSG:4326")

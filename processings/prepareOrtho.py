@@ -7,6 +7,7 @@ from qgis.core import (QgsCoordinateReferenceSystem, QgsField,
                        QgsProcessing, QgsProcessingAlgorithm, QgsProperty,
                        QgsProcessingParameterMultipleLayers, QgsProcessingParameterVectorLayer,
                        QgsProcessingParameterNumber, QgsUnitTypes,
+                       QgsProcessingParameterEnum,
                        QgsProcessingParameterFeatureSink, QgsFeatureSink)
 from qgis.PyQt.QtCore import (QCoreApplication, QVariant)
 
@@ -26,12 +27,12 @@ class PrepareOrtho(QgsProcessingAlgorithm):
                 QgsProcessing.TypeVectorAnyGeometry
             )
         )
+
         self.addParameter(
-            QgsProcessingParameterNumber(
+            QgsProcessingParameterEnum(
                 self.SCALE,
-                self.tr('Inserir escala:'),
-                type=QgsProcessingParameterNumber.Integer,
-                defaultValue=50000
+                self.tr('Selecione a escala de edição:'),
+                options = [self.tr('1:25.000'), self.tr('1:50.000'), self.tr('1:100.000'), self.tr('1:250.000')]
             )
         )
 
@@ -53,11 +54,24 @@ class PrepareOrtho(QgsProcessingAlgorithm):
 
     def processAlgorithm(self, parameters, context, feedback):      
         layers = self.parameterAsLayerList(parameters, self.INPUT_LAYERS, context)
-        scale = self.parameterAsInt(parameters, self.SCALE, context)
+        gridScaleParam = self.parameterAsInt(parameters, self.SCALE, context)
+
+        if (gridScaleParam==0):
+            scale = 25000
+            scaleMini = 185000
+        elif (gridScaleParam==1):
+            scale = 50000
+            scaleMini = 370000
+        if (gridScaleParam==2):
+            scale = 100000
+            scaleMini = 740000
+        elif (gridScaleParam==3):
+            scale = 250000
+            scaleMini = 2217000
+
         frameLayer = self.parameterAsVectorLayer(parameters, self.INPUT_FRAME, context)
         if frameLayer:
             frameLinesLayer = self.convertPolygonToLines(frameLayer)
-        scaleMini = scale*6.2
         layersToCalculateDefaults = [
             'infra_obstaculo_vertical_p',
             'infra_pista_pouso_p',

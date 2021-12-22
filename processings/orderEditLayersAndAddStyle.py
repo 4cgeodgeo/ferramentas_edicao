@@ -58,9 +58,10 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
         )
 
         self.addParameter(
-            QgsProcessingParameterScale(
+            QgsProcessingParameterEnum(
                 self.INPUT_SCALE,
-                self.tr('Selecione a escala para renderização:')
+                self.tr('Selecione a escala de edição:'),
+                options = [self.tr('1:25.000'), self.tr('1:50.000'), self.tr('1:100.000'), self.tr('1:250.000')]
             )
         )
 
@@ -76,9 +77,18 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
 
     def processAlgorithm(self, parameters, context, feedback): 
         mapType = self.parameterAsEnum(parameters, self.MAP_TYPE, context)
-        scale = self.parameterAsDouble(parameters, self.INPUT_SCALE, context)
+        gridScaleParam = self.parameterAsInt(parameters, self.INPUT_SCALE, context)
         mode = self.parameterAsEnum(parameters,self.MODE,context)
         groupInput = self.parameterAsGroup(parameters, self.GROUP, context)
+
+        if (gridScaleParam==0):
+            gridScale = 25000
+        elif (gridScaleParam==1):
+            gridScale = 50000
+        if (gridScaleParam==2):
+            gridScale = 100000
+        elif (gridScaleParam==3):
+            gridScale = 250000
 
         project = context.project()
         
@@ -145,7 +155,7 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
             return {self.OUTPUT: 'Cancelado'}
 
         feedback.setProgressText('Configurando escala de renderização...')
-        self.renderizar( layers, scale)
+        self.renderizar( layers, gridScaleParam)
         if feedback.isCanceled():
             return {self.OUTPUT: 'Cancelado'}
 
