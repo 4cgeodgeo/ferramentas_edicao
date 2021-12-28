@@ -155,7 +155,7 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
             return {self.OUTPUT: 'Cancelado'}
 
         feedback.setProgressText('Configurando escala de renderização...')
-        self.renderizar( layers, gridScaleParam)
+        self.renderizar( layers, gridScale)
         if feedback.isCanceled():
             return {self.OUTPUT: 'Cancelado'}
 
