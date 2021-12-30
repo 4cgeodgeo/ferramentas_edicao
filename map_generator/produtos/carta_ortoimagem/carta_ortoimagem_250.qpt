@@ -180,7 +180,7 @@
   <LabelFont style="" description="Arial,10,-1,5,50,0,0,0,0,0"/>
   <FontColor green="0" red="0" alpha="255" blue="0"/>
  </LayoutItem>
- <LayoutItem excludeFromExports="0" type="65641" zValue="70" visibility="1" templateUuid="{5d0f9419-2ca2-4776-9e59-193e5a8eb489}" itemRotation="0" outlineWidthM="0.3,mm" htmlState="0" groupUuid="" labelText="CONVENÇÕES CARTOGRÁFICAS" valign="32" blendMode="0" uuid="{5d0f9419-2ca2-4776-9e59-193e5a8eb489}" frame="false" id="label_convencoes" marginY="0" opacity="1" position="864,8.1,mm" size="80,5,mm" halign="132" marginX="0" positionOnPage="864,8.1,mm" referencePoint="0" positionLock="false" background="false" frameJoinStyle="miter">
+ <LayoutItem excludeFromExports="0" type="65641" zValue="70" visibility="1" templateUuid="{5d0f9419-2ca2-4776-9e59-193e5a8eb489}" itemRotation="0" outlineWidthM="0.3,mm" htmlState="0" groupUuid="" labelText="LEGENDA" valign="32" blendMode="0" uuid="{5d0f9419-2ca2-4776-9e59-193e5a8eb489}" frame="false" id="label_convencoes" marginY="0" opacity="1" position="864,8.1,mm" size="80,5,mm" halign="132" marginX="0" positionOnPage="864,8.1,mm" referencePoint="0" positionLock="false" background="false" frameJoinStyle="miter">
   <FrameColor green="0" red="0" alpha="255" blue="0"/>
   <BackgroundColor green="255" red="255" alpha="255" blue="255"/>
   <LayoutObject>
