@@ -140,9 +140,7 @@ class MergeRivers(QgsProcessingAlgorithm):
         r = processing.run(
             'native:clip',
             {   'FIELD' : [], 
-                'INPUT' : core.QgsProcessingFeatureSourceDefinition(
-                    layer.source()
-                ), 
+                'INPUT' : layer,
                 'OVERLAY' : frame,
                 'OUTPUT' : 'TEMPORARY_OUTPUT'
             }
