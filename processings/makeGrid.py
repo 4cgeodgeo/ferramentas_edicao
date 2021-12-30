@@ -66,20 +66,18 @@ class MakeGrid(QgsProcessingAlgorithm):
         self.runCreateSpatialIndex(frameLayer)
         # Converter moldura para lat long
         crs = QgsCoordinateReferenceSystem("EPSG:4326")
-        frameLayer.startEditing()
-        frameLayer.setCrs(crs)
-        frameLayer.commitChanges()
+        frameLayer4326 = self.reprojectLayer(frameLayer, crs)
         # Pegar centro da moldura  (se tiver mais de um polígono na camada de moldura pegar o centro dos centros)
-        if frameLayer.featureCount()>1:
+        if frameLayer4326.featureCount()>1:
             xs=[]
             ys=[]
-            for poly in frameLayer.getFeatures():
+            for poly in frameLayer4326.getFeatures():
                 centroid=QgsPointXY(poly.geometry().centroid().constGet())
                 xs.append(centroid.x())
                 ys.append(centroid.y())
             centroid= QgsPointXY(sum(xs)/len(xs), sum(ys)/len(ys))
         else:
-            for poly in frameLayer.getFeatures():
+            for poly in frameLayer4326.getFeatures():
                 centroid=QgsPointXY(poly.geometry().centroid().constGet())
         # Descobrir o utm
         utmString = self.getSirgasAuthIdByPointLatLong(centroid.y(), centroid.x())
