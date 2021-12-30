@@ -19,7 +19,7 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
 
     MAP_TYPE = 'MAP_TYPE'
     STYLENAME = 'STYLENAME'
-    INPUT_SCALE = 'INPUT_SCALE'
+    # INPUT_SCALE = 'INPUT_SCALE'
     GROUP = 'GROUP'
     MODE = 'MODE'
     OUTPUT = 'OUTPUT'
@@ -57,13 +57,13 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
             )
         )
 
-        self.addParameter(
-            QgsProcessingParameterEnum(
-                self.INPUT_SCALE,
-                self.tr('Selecione a escala de edição:'),
-                options = [self.tr('1:25.000'), self.tr('1:50.000'), self.tr('1:100.000'), self.tr('1:250.000')]
-            )
-        )
+        # self.addParameter(
+        #     QgsProcessingParameterEnum(
+        #         self.INPUT_SCALE,
+        #         self.tr('Selecione a escala de edição:'),
+        #         options = [self.tr('1:25.000'), self.tr('1:50.000'), self.tr('1:100.000'), self.tr('1:250.000')]
+        #     )
+        # )
 
         self.addParameter(
             ParameterGroup(
@@ -77,18 +77,18 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
 
     def processAlgorithm(self, parameters, context, feedback): 
         mapType = self.parameterAsEnum(parameters, self.MAP_TYPE, context)
-        gridScaleParam = self.parameterAsInt(parameters, self.INPUT_SCALE, context)
+        # gridScaleParam = self.parameterAsInt(parameters, self.INPUT_SCALE, context)
         mode = self.parameterAsEnum(parameters,self.MODE,context)
         groupInput = self.parameterAsGroup(parameters, self.GROUP, context)
 
-        if (gridScaleParam==0):
-            gridScale = 25000
-        elif (gridScaleParam==1):
-            gridScale = 50000
-        if (gridScaleParam==2):
-            gridScale = 100000
-        elif (gridScaleParam==3):
-            gridScale = 250000
+        # if (gridScaleParam==0):
+        #     gridScale = 25000
+        # elif (gridScaleParam==1):
+        #     gridScale = 50000
+        # if (gridScaleParam==2):
+        #     gridScale = 100000
+        # elif (gridScaleParam==3):
+        #     gridScale = 250000
 
         project = context.project()
         
@@ -191,16 +191,25 @@ class OrderEditLayersAndAddStyle(QgsProcessingAlgorithm):
         listSize = len(layers)
         progressStep = 100/(listSize+1) if listSize else 0
         order = []
+        originalOrder = project.layerTreeRoot().layerOrder()
+        for layer in originalOrder:
+            if layer in layers:
+                break
+            order.append(layer)
+        n = len(order)
         for step, layer in enumerate(layers):
             if feedback.isCanceled():
                 return 
             layerName = layer.dataProvider().uri().table()
             feedback.setProgress( step * progressStep )
             order.insert( 
-            layerNames.index( layerName ), 
+            layerNames.index( layerName )+n, 
             layer
             )
-
+        if len(order):
+            for layer in originalOrder[len(order)-1:]:
+                if layer not in layers:
+                    order.append(layer)
         project.layerTreeRoot().setHasCustomLayerOrder(True)
         project.layerTreeRoot().setCustomLayerOrder( order )
 
