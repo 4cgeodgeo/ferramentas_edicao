@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from qgis.PyQt.QtCore import (QCoreApplication, QVariant)
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (QgsFeatureSink,
                        QgsProcessingAlgorithm,
                        QgsProcessingParameterFeatureSink,
@@ -8,15 +8,17 @@ from qgis.core import (QgsFeatureSink,
                        QgsProcessingParameterField,
                        QgsProcessingParameterVectorLayer,
                        QgsFeatureRequest,
-                       QgsProcessing
+                       QgsProcessing,
+                       QgsCoordinateReferenceSystem
                        )
 from qgis import processing
 from qgis.utils import iface
+import math 
 class ElevationPointsGeneralization(QgsProcessingAlgorithm): 
 
     INPUT_SCALE = 'INPUT_SCALE'
     INPUT_ELEVATION_POINTS = 'INPUT_ELEVATION_POINTS'
-    INPUT_ELEVATION_POINTS = 'INPUT_ELEVATION_POINTS'
+    INPUT_COUNTOUR_LINES = 'INPUT_COUNTOUR_LINES'
     INPUT_IS_DEPRESSION_FIELD ='INPUT_IS_DEPRESSION_FIELD'
     INPUT_IS_VISIBLE_FIELD ='INPUT_IS_VISIBLE_FIELD'
     OUTPUT = 'OUTPUT'
@@ -71,11 +73,13 @@ class ElevationPointsGeneralization(QgsProcessingAlgorithm):
     def processAlgorithm(self, parameters, context, feedback):      
         feedback.setProgressText('Iniciando...')
         returnMessage = 'Camada Generalização de Ponto Cotado gerada'
-        gridScaleParam = self.parameterAsEnums(parameters,'INPUT_SCALE', context)[0]
-        pointLayer = self.parameterAsVectorLayer( parameters,'INPUT_ELEVATION_POINTS', context )
-        countourLayerpre = self.parameterAsVectorLayer( parameters,'INPUT_COUNTOUR_LINES', context )
-        isDepressionField = self.parameterAsFields (parameters,'INPUT_IS_DEPRESSION_FIELD', context)[0]
-        isVisibleField = self.parameterAsFields (parameters,'INPUT_IS_VISIBLE_FIELD', context)[0]
+        gridScaleParam = self.parameterAsEnums(parameters,self.INPUT_SCALE, context)[0]
+        pointLayer = self.parameterAsVectorLayer( parameters,self.INPUT_ELEVATION_POINTS, context )
+        countourLayerpre = self.parameterAsVectorLayer( parameters,self.INPUT_COUNTOUR_LINES, context )
+        isDepressionField = self.parameterAsFields (parameters,self.INPUT_IS_DEPRESSION_FIELD, context)[0]
+        isVisibleField = self.parameterAsFields (parameters,self.INPUT_IS_VISIBLE_FIELD, context)[0]
+        pointLayerCopy = self.runAddCount(pointLayer)
+        self.runCreateSpatialIndex(pointLayerCopy)
         countourLayerLine = self.runAddCount(countourLayerpre)
         self.runCreateSpatialIndex(countourLayerLine)
         countourLayerHoles = self.lineToPolygons(countourLayerLine,context, feedback)
@@ -83,7 +87,6 @@ class ElevationPointsGeneralization(QgsProcessingAlgorithm):
         self.fillField(countourLayerLine, countourLayer)
         summitsOrBottoms = []
         self.selectSummitsAndBottoms(countourLayer, summitsOrBottoms)
-        CRSstr = pointLayer.sourceCrs()
         pointsIdsSelected = []
         if (gridScaleParam==0):
             gridScale = 25000
@@ -94,14 +97,22 @@ class ElevationPointsGeneralization(QgsProcessingAlgorithm):
         elif (gridScaleParam==3):
             gridScale = 250000
         gridSize = 4*gridScale/100
-        ptLyrExt = pointLayer.extent()
-        xmin = ptLyrExt.xMinimum()
-        xmax = ptLyrExt.xMaximum()
-        ymin = ptLyrExt.yMinimum()
-        ymax = ptLyrExt.yMaximum()
-        xmin, xmax, ymin, ymax = self.processExtent(xmin, xmax, ymin, ymax, gridScale)
-        grid = self.makeGrid(gridSize, CRSstr, xmin, xmax, ymin, ymax, parameters, context, feedback)
-        self.generalizePoint(grid, pointLayer, pointsIdsSelected, summitsOrBottoms, isDepressionField)
+        crs = QgsCoordinateReferenceSystem("EPSG:4326")
+        pointLayerCopy4326 = self.reprojectLayer(pointLayerCopy, crs)
+        ptLyrExt = pointLayerCopy4326.extent()
+        center = ptLyrExt.center()
+        utmString = self.getSirgasAuthIdByPointLatLong(center.y(), center.x())
+        utm = QgsCoordinateReferenceSystem(utmString)
+        pointLayerCopyReprojected = self.reprojectLayer(pointLayerCopy, utm)
+        ptLyrExtReprojected = pointLayerCopyReprojected.extent()
+        xmin = ptLyrExtReprojected.xMinimum()
+        xmax = ptLyrExtReprojected.xMaximum()
+        ymin = ptLyrExtReprojected.yMinimum()
+        ymax = ptLyrExtReprojected.yMaximum()
+        xmin, xmax, ymin, ymax = self.processExtent(xmin, xmax, ymin, ymax, gridSize)
+        grid = self.makeGrid(gridSize, utm, xmin, xmax, ymin, ymax, parameters, context, feedback)
+        reprojectGrid = self.reprojectLayer(grid,pointLayer.sourceCrs())
+        self.generalizePoint(reprojectGrid, pointLayer, pointsIdsSelected, summitsOrBottoms, isDepressionField)
 
         provider = pointLayer.dataProvider()
         pointLayer.startEditing()
@@ -114,12 +125,8 @@ class ElevationPointsGeneralization(QgsProcessingAlgorithm):
             i+=1
         return{self.OUTPUT: returnMessage}
 
-    def processExtent(self, xmin, xmax, ymin, ymax, gridScale):
-        size=4000
-        if (gridScale==250000):
-            size=40000
-        
-        return ((int(xmin/size)-1)*size, (int(xmax/size)+1)*size, (int(ymin/size)-1)*size, (int(ymax/size)+1)*size)
+    def processExtent(self, xmin, xmax, ymin, ymax, gridSize):
+        return ((int(xmin/gridSize))*gridSize, (int(xmax/gridSize)+1)*gridSize, (int(ymin/gridSize))*gridSize, (int(ymax/gridSize)+1)*gridSize)
 
     def makeGrid(self, gridSize, CRS, xmin, xmax, ymin, ymax, parameters, context, feedback):
         extent = str(str(xmin)+", "+str(xmax)+", "+str(ymin)+", "+str(ymax))
@@ -203,6 +210,48 @@ class ElevationPointsGeneralization(QgsProcessingAlgorithm):
             for tBR in toBeRemoved:
                 summitsOrBottoms.remove(tBR)
 
+    def getSirgasAuthIdByPointLatLong(self, lat, long):
+        """
+        Calculates SIRGAS 2000 epsg.
+        <h2>Example usage:</h2>
+        <ul>
+        <li>Found: getSirgarAuthIdByPointLatLong(-8.05389, -34.881111) -> 'ESPG:31985'</li>
+        <li>Not found: getSirgarAuthIdByPointLatLong(lat, long) -> ''</li>
+        </ul>
+        """
+        zone_number = math.floor(((long + 180) / 6) % 60) + 1
+        if lat >= 0:
+            zone_letter = 'N'
+        else:
+            zone_letter = 'S'
+        return self.getSirgasEpsg('{0}{1}'.format(zone_number, zone_letter))
+
+    def getSirgasEpsg(self, key):
+        options = {
+            "11N" : "EPSG:31965", 
+            "12N" : "EPSG:31966", 
+            "13N" : "EPSG:31967", 
+            "14N" : "EPSG:31968", 
+            "15N" : "EPSG:31969", 
+            "16N" : "EPSG:31970", 
+            "17N" : "EPSG:31971", 
+            "18N" : "EPSG:31972", 
+            "19N" : "EPSG:31973", 
+            "20N" : "EPSG:31974", 
+            "21N" : "EPSG:31975", 
+            "22N" : "EPSG:31976", 
+            "17S" : "EPSG:31977", 
+            "18S" : "EPSG:31978", 
+            "19S" : "EPSG:31979", 
+            "20S" : "EPSG:31980", 
+            "21S" : "EPSG:31981", 
+            "22S" : "EPSG:31982", 
+            "23S" : "EPSG:31983", 
+            "24S" : "EPSG:31984", 
+            "25S" : "EPSG:31985"
+        }
+        return options[key] if key in options else ""
+
 
     def runAddCount(self, inputLyr):
         output = processing.run(
@@ -263,6 +312,17 @@ class ElevationPointsGeneralization(QgsProcessingAlgorithm):
             if (summitsOrBottomsPoints):
                 for point in summitsOrBottomsPoints.values():
                     pointsIdsSelected.append(point.id())
+
+    def reprojectLayer(self, layer, crs):
+        output = processing.run(
+            "native:reprojectlayer",
+            {
+                'INPUT':layer,
+                'TARGET_CRS':crs,
+                'OUTPUT':'TEMPORARY_OUTPUT'
+            }
+        )
+        return output['OUTPUT']    
                 
     def outLayer(self, parameters, context, features, setCRS):
         
