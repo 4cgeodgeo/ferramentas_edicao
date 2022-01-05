@@ -1,13 +1,4 @@
-from pathlib import Path
-import enum
-
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QPushButton, QComboBox
-from PyQt5.QtCore import Qt
-from qgis.core import (Qgis, QgsFeature, QgsFeatureRequest, QgsGeometry,
-                       QgsProject, QgsSpatialIndex)
-
-
+from PyQt5.QtWidgets import QComboBox
 
 class ScaleSelector(QComboBox):
 

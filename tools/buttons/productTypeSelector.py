@@ -1,10 +1,10 @@
 from PyQt5.QtWidgets import QComboBox
 
-class MapTypeSelector(QComboBox):
+class ProductTypeSelector(QComboBox):
 
     options = {
-        'Carta': 1,
-        'Carta Mini': 2
+        'Topográfica': 0,
+        'Ortoimagem': 1
     }
 
     def __init__(self, iface, toolBar):

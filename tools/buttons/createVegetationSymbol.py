@@ -9,12 +9,13 @@ from .baseTools import BaseTools
 
 class CreateVegetationSymbol(QgsMapToolEmitPoint, BaseTools):
 
-    def __init__(self, iface, toolBar, scaleSelector):
+    def __init__(self, iface, toolBar, scaleSelector, productTypeSelector):
         super().__init__(iface.mapCanvas())
         self.iface = iface
         self.toolBar = toolBar
         self.mapCanvas = iface.mapCanvas()
         self.scaleSelector = scaleSelector
+        self.productTypeSelector = productTypeSelector
         self.canvasClicked.connect(self.mouseClick)
 
     def setupUi(self):
@@ -73,21 +74,27 @@ class CreateVegetationSymbol(QgsMapToolEmitPoint, BaseTools):
         self.tol = self.mapCanvas.mapSettings().mapUnitsPerPixel()
 
     def getLayers(self):
-        srcLyr = QgsProject.instance().mapLayersByName('cobter_vegetacao_a')
-        dstLyr = QgsProject.instance().mapLayersByName('edicao_simb_vegetacao_p')
-        if len(srcLyr) == 1:
-            self.srcLyr = srcLyr[0]
-        else:
+        if self.productTypeSelector.currentText() == 'Ortoimagem':
             self.displayErrorMessage(self.tr(
-                'Camada "cobter_vegetacao_a" não encontrada'
+                'Esta ferramenta não está disponível para Carta Ortoimagem'
             ))
             return None
-        if len(dstLyr) == 1:
-            self.dstLyr = dstLyr[0]
         else:
-            self.displayErrorMessage(self.tr(
-                'Camada "edicao_simb_vegetacao_p" não encontrada'
-            ))
-            return None
-        self.setTolerance()
-        return True
+            srcLyr = QgsProject.instance().mapLayersByName('cobter_vegetacao_a')
+            dstLyr = QgsProject.instance().mapLayersByName('edicao_simb_vegetacao_p')
+            if len(srcLyr) == 1:
+                self.srcLyr = srcLyr[0]
+            else:
+                self.displayErrorMessage(self.tr(
+                    'Camada "cobter_vegetacao_a" não encontrada'
+                ))
+                return None
+            if len(dstLyr) == 1:
+                self.dstLyr = dstLyr[0]
+            else:
+                self.displayErrorMessage(self.tr(
+                    'Camada "edicao_simb_vegetacao_p" não encontrada'
+                ))
+                return None
+            self.setTolerance()
+            return True

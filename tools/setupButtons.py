@@ -3,6 +3,7 @@ from pathlib import Path
 from PyQt5.QtWidgets import QButtonGroup, QActionGroup
 
 from .buttons.mapTypeSelector import MapTypeSelector
+from .buttons.productTypeSelector import ProductTypeSelector
 from .buttons.scaleSelector import ScaleSelector
 from .buttons.cycleVisibility import CycleVisibility
 from .buttons.cycleTextJustification import CycleTextJustification
@@ -26,23 +27,25 @@ class SetupButtons:
     def initToolBar(self):
         mapTypeSelector = MapTypeSelector(self.iface, self.toolBar)
         mapTypeSelector.setupUi()
+        productTypeSelector = ProductTypeSelector(self.iface, self.toolBar)
+        productTypeSelector.setupUi()
         scaleSelector = ScaleSelector(self.iface, self.toolBar)
         scaleSelector.setupUi()
         cycleVisibilityButton = CycleVisibility(self.toolBar, self.iface)
         cycleVisibilityButton.setupUi()
         cycleTextJustificationButton = CycleTextJustification(self.toolBar, self.iface)
         cycleTextJustificationButton.setupUi()
-        copyToGenericLabelButton = CopyToGenericLabel(self.toolBar, self.iface, mapTypeSelector)
+        copyToGenericLabelButton = CopyToGenericLabel(self.toolBar, self.iface, mapTypeSelector, productTypeSelector)
         copyToGenericLabelButton.setupUi()
         cycleLabelPositionButton = CycleLabelPosition(self.toolBar, self.iface, scaleSelector)
         cycleLabelPositionButton.setupUi()
-        createVegetationSymbol = CreateVegetationSymbol(self.iface, self.toolBar, scaleSelector)
+        createVegetationSymbol = CreateVegetationSymbol(self.iface, self.toolBar, scaleSelector, productTypeSelector)
         createVegetationSymbol.setupUi()
         createRoadIdentifierSymbol = CreateRoadIdentifierSymbol(self.iface, self.toolBar, mapTypeSelector, scaleSelector)
         createRoadIdentifierSymbol.setupUi()
-        createLakeLabel = CreateLakeLabel(self.iface, self.toolBar, mapTypeSelector, scaleSelector)
+        createLakeLabel = CreateLakeLabel(self.iface, self.toolBar, mapTypeSelector, productTypeSelector, scaleSelector)
         createLakeLabel.setupUi()
-        createRiverLabel = CreateRiverLabel(self.iface, self.toolBar, mapTypeSelector, scaleSelector)
+        createRiverLabel = CreateRiverLabel(self.iface, self.toolBar, mapTypeSelector, productTypeSelector, scaleSelector)
         createRiverLabel.setupUi()
         self.mapTools.extend([
             createVegetationSymbol,
@@ -58,6 +61,7 @@ class SetupButtons:
         ])
         self.tools.extend([
             mapTypeSelector,
+            productTypeSelector,
             scaleSelector,
             cycleTextJustificationButton,
             copyToGenericLabelButton,

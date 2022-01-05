@@ -15,12 +15,13 @@ from .utils.comboBox import ComboBox
 
 class CreateRiverLabel(QgsMapToolEmitPoint, BaseTools):
 
-    def __init__(self, iface, toolBar, mapTypeSelector, scaleSelector):
+    def __init__(self, iface, toolBar, mapTypeSelector, productTypeSelector, scaleSelector):
         super().__init__(iface.mapCanvas())
         self.iface = iface
         self.toolBar = toolBar
         self.dstLyr = None
         self.mapTypeSelector = mapTypeSelector
+        self.productTypeSelector = productTypeSelector
         self.scaleSelector = scaleSelector
         self.mapCanvas = iface.mapCanvas()
         self.box = ComboBox(self.iface.mainWindow())
@@ -75,10 +76,15 @@ class CreateRiverLabel(QgsMapToolEmitPoint, BaseTools):
         toInsert.setAttribute('texto_edicao', feat.attribute('nome'))
         toInsert.setAttribute('estilo_fonte', 'Condensed Italic')
         toInsert.setAttribute('espacamento', 0)
-        toInsert.setAttribute('cor', '#00a0df')
         toInsert.setAttribute('carta_simbolizacao', self.getMapType())
         labelSize = self.getLabelFontSizeA(feat)
         toInsert.setAttribute('tamanho_txt', labelSize)
+        if self.productTypeSelector.currentText() == 'Topográfica':
+            toInsert.setAttribute('cor', '#00a0df')
+        elif self.productTypeSelector.currentText() == 'Ortoimagem':
+            toInsert.setAttribute('cor', '#ffffff')
+            toInsert.setAttribute('cor_buffer', '#00a0df')
+            toInsert.setAttribute('tamanho_buffer', '1')
         toInsertGeom = self.getLabelGeometry(feat, pos, labelSize)
         toInsert.setGeometry(toInsertGeom)
         self.dstLyr.startEditing()
@@ -90,10 +96,15 @@ class CreateRiverLabel(QgsMapToolEmitPoint, BaseTools):
         toInsert.setAttribute('texto_edicao', feat.attribute('nome').upper())
         toInsert.setAttribute('estilo_fonte', 'Condensed Italic')
         toInsert.setAttribute('espacamento', 0)
-        toInsert.setAttribute('cor', '#00a0df')
         toInsert.setAttribute('carta_simbolizacao', self.getMapType())
         labelSize = self.getLabelFontSizeB(feat)
         toInsert.setAttribute('tamanho_txt', labelSize)
+        if self.productTypeSelector.currentText() == 'Topográfica':
+            toInsert.setAttribute('cor', '#00a0df')
+        elif self.productTypeSelector.currentText() == 'Ortoimagem':
+            toInsert.setAttribute('cor', '#ffffff')
+            toInsert.setAttribute('cor_buffer', '#00a0df')
+            toInsert.setAttribute('tamanho_buffer', '1')
         toInsertGeom = self.getLabelGeometry(feat, pos, labelSize)
         toInsert.setGeometry(toInsertGeom)
         self.dstLyr.startEditing()
