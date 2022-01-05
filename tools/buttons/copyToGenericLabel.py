@@ -31,7 +31,7 @@ class CopyToGenericLabel(BaseTools):
         if self.productTypeSelector.currentText() == 'Topográfica':
             destFeat.setAttribute('texto_edicao', originFeat.attribute('nome'))
             destFeat.setAttribute('estilo_fonte', 'Condensed')
-            destFeat.setAttribute('tamanho_txt', 6)
+            destFeat.setAttribute('tamanho_txt', 6 if self.mapTypeSelector.currentText() == 'Carta' else 4.5)
             destFeat.setAttribute('justificativa_txt', 2)
             destFeat.setAttribute('espacamento', 0)
             destFeat.setAttribute('cor', '#000000')
@@ -40,7 +40,7 @@ class CopyToGenericLabel(BaseTools):
         elif self.productTypeSelector.currentText() == 'Ortoimagem':
             destFeat.setAttribute('texto_edicao', originFeat.attribute('nome'))
             destFeat.setAttribute('estilo_fonte', 'Condensed Bold')
-            destFeat.setAttribute('tamanho_txt', 10)
+            destFeat.setAttribute('tamanho_txt', 10 if self.mapTypeSelector.currentText() == 'Carta' else 4.5)
             destFeat.setAttribute('justificativa_txt', 2)
             destFeat.setAttribute('espacamento', 0)
             destFeat.setAttribute('cor', '#ffffff')
@@ -49,12 +49,11 @@ class CopyToGenericLabel(BaseTools):
             destFeat.setAttribute('carta_simbolizacao', self.mapTypeSelector.options.get(self.mapTypeSelector.currentText()))
             destFeat.setGeometry(originFeat.geometry())
 
-
     def setLineFeatValues(self, originFeat, destFeat):
         if self.productTypeSelector.currentText() == 'Topográfica':
             destFeat.setAttribute('texto_edicao', originFeat.attribute('nome'))
             destFeat.setAttribute('estilo_fonte', 'Condensed')
-            destFeat.setAttribute('tamanho_txt', 6)
+            destFeat.setAttribute('tamanho_txt', 6 if self.mapTypeSelector.currentText() == 'Carta' else 4.5)
             destFeat.setAttribute('espacamento', 0)
             destFeat.setAttribute('cor', '#000000')
             destFeat.setAttribute('carta_simbolizacao', self.mapTypeSelector.options.get(self.mapTypeSelector.currentText()))
@@ -62,7 +61,7 @@ class CopyToGenericLabel(BaseTools):
         elif self.productTypeSelector.currentText() == 'Ortoimagem':
             destFeat.setAttribute('texto_edicao', originFeat.attribute('nome'))
             destFeat.setAttribute('estilo_fonte', 'Condensed Italic')
-            destFeat.setAttribute('tamanho_txt', 10)
+            destFeat.setAttribute('tamanho_txt', 10 if self.mapTypeSelector.currentText() == 'Carta' else 4.5)
             destFeat.setAttribute('espacamento', 0)
             destFeat.setAttribute('cor', '#ffffff')
             destFeat.setAttribute('cor_buffer', '#0')

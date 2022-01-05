@@ -71,7 +71,7 @@ class CreateLakeLabel(QgsMapToolEmitPoint,BaseTools):
         toInsert.setAttribute('espacamento', 0)
         toInsert.setAttribute('cor', '#00a0df')
         toInsert.setAttribute('carta_simbolizacao', self.getMapType())
-        toInsert.setAttribute('tamanho_txt', self.getLabelSize(feat))
+        toInsert.setAttribute('tamanho_txt', self.getLabelSize(feat) if self.mapTypeSelector.currentText() == 'Carta' else 4.5)
         if self.productTypeSelector.currentText() == 'Ortoimagem':
             toInsert.setAttribute('cor_buffer', '#00a0df')
             toInsert.setAttribute('tamanho_buffer', '1')
