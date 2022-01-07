@@ -170,7 +170,7 @@ class HtmlData(MapParent):
         label = composition.itemById("label_tabela_info_carta")
         if label:
             hemisphere = 'Norte' if hemisphere == 'N' else 'Sul'
-            falseNorth = '+ 0' if hemisphere == 'Norte' else '+ 10.000'
+            falseNorth = '+0' if hemisphere == 'Norte' else '+10.000'
             centralMeridian = -180+(int(fuso)-1)*6 + 3
             curveData = [x for x in curvas[str(scale)].values()]
             position = 'W' if centralMeridian < 0 else 'E'
@@ -194,7 +194,7 @@ class HtmlData(MapParent):
             _ = self.generateElement(_tmp, 'td', {'class':'left', 'rowspan':'2'}, 'Origem UTM')
             _ = self.generateElement(_tmp, 'td', {'class':'right'}, f'Hemisfério {hemisphere}. Equador: {falseNorth} Km')
             _tmp = self.generateElement(firstTable, 'tr')
-            _ = self.generateElement(_tmp, 'td', {'class':'right'}, f'Zona {fuso}. Meridiano Central {centralMeridian} º {position} Gr.: + 500 Km')
+            _ = self.generateElement(_tmp, 'td', {'class':'right'}, f'Zona {fuso}. Meridiano Central {centralMeridian}º {position} Gr.: +500 Km')
             if tecnicalInfo.get('datum_vertical'):
                 _tmp = self.generateElement(firstTable, 'tr')
                 _ = self.generateElement(_tmp, 'td', {'class':'left'}, 'Datum vertical')
@@ -230,7 +230,7 @@ class HtmlData(MapParent):
                 if intersectionStatus in ('inside', 'intersects'):
                     _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites internacionais: CBDL** e GADM 3.6')
                     _tmp = self.generateElement(_tmp, 'tr')
-                    _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites estaduais e municipais: IBGE** / 2020 e GADM 3.6')
+                    _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites estaduais e municipais: IBGE**/2020 e GADM 3.6')
                 else:
                     _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites internacionais: GADM 3.6')
                     _tmp = self.generateElement(_tmp, 'tr')
@@ -238,7 +238,7 @@ class HtmlData(MapParent):
             else:
                 _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites internacionais: CBDL**')
                 _tmp = self.generateElement(_tmp, 'tr')
-                _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites estaduais e municipais: IBGE** / 2020')
+                _ = self.generateElement(_tmp, 'td', {'class':'right'}, 'Limites estaduais e municipais: IBGE**/2020')
             for info in thirdPartyData:
                 _tmp = self.generateElement(firstTable, 'tr')
                 _ = self.generateElement(_tmp, 'td', {'class':'right'}, info)
