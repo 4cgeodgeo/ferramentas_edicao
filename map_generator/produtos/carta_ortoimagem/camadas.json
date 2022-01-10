@@ -234,7 +234,6 @@
             "tabela": "llp_limite_legal_l",
             "schema": "edgv"
         },
-        
         {
             "tabela": "infra_via_deslocamento_l",
             "schema": "edgv"
