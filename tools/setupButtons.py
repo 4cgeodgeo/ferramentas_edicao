@@ -13,6 +13,7 @@ from .buttons.createVegetationSymbol import CreateVegetationSymbol
 from .buttons.createRoadIdentifierSymbol import CreateRoadIdentifierSymbol
 from .buttons.createLakeLabel import CreateLakeLabel
 from .buttons.createRiverLabel import CreateRiverLabel
+from .buttons.createRoadLabel import CreateRoadLabel
 
 class SetupButtons:
 
@@ -47,17 +48,21 @@ class SetupButtons:
         createLakeLabel.setupUi()
         createRiverLabel = CreateRiverLabel(self.iface, self.toolBar, mapTypeSelector, productTypeSelector, scaleSelector)
         createRiverLabel.setupUi()
+        createRoadLabel = CreateRoadLabel(self.iface, self.toolBar, mapTypeSelector, productTypeSelector, scaleSelector)
+        createRoadLabel.setupUi()
         self.mapTools.extend([
             createVegetationSymbol,
             createRoadIdentifierSymbol,
             createLakeLabel,
-            createRiverLabel
+            createRiverLabel,
+            createRoadLabel
         ])
         self.mapToolsActions.extend([
             createVegetationSymbol._action,
             createRoadIdentifierSymbol._action,
             createLakeLabel._action,
-            createRiverLabel._action
+            createRiverLabel._action,
+            createRoadLabel._action
         ])
         self.tools.extend([
             mapTypeSelector,
@@ -70,7 +75,8 @@ class SetupButtons:
             createVegetationSymbol,
             createRoadIdentifierSymbol,
             createLakeLabel,
-            createRiverLabel
+            createRiverLabel,
+            createRoadLabel
         ])
         self.actionGroup = self.setupActionGroup(*self.mapTools)
 
