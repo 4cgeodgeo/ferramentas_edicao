@@ -652,7 +652,7 @@
   <LabelFont style="" description="Arial,10,-1,5,75,0,0,0,0,0"/>
   <FontColor green="0" red="0" alpha="255" blue="0"/>
  </LayoutItem>
- <LayoutItem excludeFromExports="0" type="65639" zValue="43" visibility="1" templateUuid="{24a85c8b-8d86-47c2-9669-18a3d57f4e99}" itemRotation="0" outlineWidthM="0.2,mm" groupUuid="" blendMode="0" uuid="{24a85c8b-8d86-47c2-9669-18a3d57f4e99}" frame="true" id="map_localizacao_adaptacao" opacity="1" position="25,183.83,mm" size="74,74,mm" isTemporal="0" labelMargin="0,mm" mapFlags="0" positionOnPage="25,183.83,mm" referencePoint="0" followPresetName="" drawCanvasItems="true" positionLock="false" keepLayerSet="false" background="true" mapRotation="0" followPreset="false" frameJoinStyle="miter">
+ <LayoutItem excludeFromExports="0" type="65639" zValue="43" visibility="1" templateUuid="{24a85c8b-8d86-47c2-9669-18a3d57f4e99}" itemRotation="0" outlineWidthM="0.2,mm" groupUuid="" blendMode="0" uuid="{24a85c8b-8d86-47c2-9669-18a3d57f4e99}" frame="true" id="map_localizacao" opacity="1" position="25,183.83,mm" size="74,74,mm" isTemporal="0" labelMargin="0,mm" mapFlags="0" positionOnPage="25,183.83,mm" referencePoint="0" followPresetName="" drawCanvasItems="true" positionLock="false" keepLayerSet="false" background="true" mapRotation="0" followPreset="false" frameJoinStyle="miter">
   <FrameColor green="0" red="0" alpha="255" blue="0"/>
   <BackgroundColor green="255" red="255" alpha="255" blue="255"/>
   <LayoutObject>
