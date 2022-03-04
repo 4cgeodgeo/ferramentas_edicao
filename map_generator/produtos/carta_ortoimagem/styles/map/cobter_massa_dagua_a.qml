@@ -50,7 +50,7 @@
   </renderer-v2>
   <labeling type="rule-based">
     <rules key="{dd68c8b5-6773-497b-b983-6442d623f151}">
-      <rule key="{f34fb47d-b145-4e80-b3d3-720b6050adbc}" filter=" &quot;tipo&quot; in (4,5,7,6,3,11)">
+      <rule key="{f34fb47d-b145-4e80-b3d3-720b6050adbc}" filter="ELSE">
         <settings calloutType="simple">
           <text-style fieldName="texto_edicao" legendString="Aa" fontStrikeout="0" previewBkgrdColor="255,255,255,255" fontUnderline="0" fontSize="6" namedStyle="Condensed Italic" textColor="255,255,255,255" multilineHeight="0.80000000000000004" allowHtml="0" fontLetterSpacing="0" textOrientation="horizontal" blendMode="0" textOpacity="1" fontSizeUnit="Point" fontFamily="Noto Sans" fontKerning="1" isExpression="0" fontWordSpacing="0" fontWeight="50" fontItalic="1" useSubstitutions="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="1">
             <families/>

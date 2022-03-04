@@ -50,7 +50,7 @@
   </renderer-v2>
   <labeling type="rule-based">
     <rules key="{6b22901f-82ec-4d88-b64e-ddb53eb16d1a}">
-      <rule key="{2633ce02-0245-4fea-81c2-d25e3bf58dd0}" filter=" &quot;tipo&quot; in (4,5,7,6,3,11) and &quot;rotular_carta_mini&quot; = 1">
+      <rule key="{2633ce02-0245-4fea-81c2-d25e3bf58dd0}" filter="&quot;rotular_carta_mini&quot; = 1">
         <settings calloutType="simple">
           <text-style fieldName="texto_edicao" legendString="Aa" fontStrikeout="0" previewBkgrdColor="255,255,255,255" fontUnderline="0" fontSize="4.5" namedStyle="Condensed Italic" textColor="255,255,255,255" multilineHeight="0.80000000000000004" allowHtml="0" fontLetterSpacing="0" textOrientation="horizontal" blendMode="0" textOpacity="1" fontSizeUnit="Point" fontFamily="Noto Sans" fontKerning="1" isExpression="0" fontWordSpacing="0" fontWeight="50" fontItalic="1" useSubstitutions="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="1">
             <families/>
