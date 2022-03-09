@@ -57,14 +57,6 @@
             "schema": "edgv"
         },
         {
-            "tabela": "llp_area_pub_militar_l",
-            "schema": "edgv"
-        },
-        {
-            "tabela": "llp_area_pub_militar_a",
-            "schema": "edgv"
-        },
-        {
             "tabela": "llp_terra_indigena_l",
             "schema": "edgv"
         },
@@ -78,6 +70,14 @@
         },
         {
             "tabela": "llp_unidade_conservacao_a",
+            "schema": "edgv"
+        },
+        {
+            "tabela": "llp_area_pub_militar_l",
+            "schema": "edgv"
+        },
+        {
+            "tabela": "llp_area_pub_militar_a",
             "schema": "edgv"
         },
         {
