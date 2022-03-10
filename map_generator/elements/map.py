@@ -35,7 +35,7 @@ class Map(MapParent):
             gridLayerDataProvider.addAttributes([QgsField("id",  QVariant.String)])
         gridLayer.updateFields()
 
-        convexhull = mapExtents.geometry().convexHull()
+        convexhull = mapExtents.geometry()
         crsSrc = QgsCoordinateReferenceSystem('EPSG:4326')
         crcDest = QgsCoordinateReferenceSystem(f'EPSG:{self.epsg}')
         transform = QgsCoordinateTransform(crsSrc, crcDest, QgsProject.instance())
