@@ -601,7 +601,7 @@
     <rules key="{1d47c5e1-a252-43b1-8bf5-017ae9c050ab}">
       <rule description="Capital Federal" filter=" &quot;tipo&quot; = 3  and &quot;rotular_carta_mini&quot; = 1" key="{1c1f2a3f-97d1-455e-bdbe-b6b2fc01e99b}">
         <settings calloutType="simple">
-          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="1" namedStyle="Condensed Bold" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="6" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="75" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
+          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="1" namedStyle="Condensed Bold" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="7" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="75" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
             <families/>
             <text-buffer bufferNoFill="1" bufferColor="0,0,0,255" bufferOpacity="1" bufferSize="0.5" bufferDraw="1" bufferSizeUnits="Point" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferJoinStyle="128" bufferBlendMode="0"/>
             <text-mask maskJoinStyle="128" maskType="0" maskedSymbolLayers="" maskSize="0.20000000000000001" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskEnabled="1" maskSizeUnits="MM" maskOpacity="1"/>
@@ -786,7 +786,7 @@
       </rule>
       <rule description="Capital Estadual" filter=" &quot;tipo&quot; = 2  and &quot;rotular_carta_mini&quot; = 1" key="{67c28d46-ce31-42e5-87da-dc95daf9f370}">
         <settings calloutType="simple">
-          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="1" namedStyle="Condensed Bold" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="6" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="75" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
+          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="1" namedStyle="Condensed Bold" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="7" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="75" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
             <families/>
             <text-buffer bufferNoFill="1" bufferColor="0,0,0,255" bufferOpacity="1" bufferSize="0.5" bufferDraw="1" bufferSizeUnits="Point" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferJoinStyle="128" bufferBlendMode="0"/>
             <text-mask maskJoinStyle="128" maskType="0" maskedSymbolLayers="" maskSize="0.20000000000000001" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskEnabled="1" maskSizeUnits="MM" maskOpacity="1"/>
@@ -971,7 +971,7 @@
       </rule>
       <rule description="Cidade" filter=" &quot;tipo&quot; = 1  and &quot;rotular_carta_mini&quot; = 1" key="{a257f9ef-0979-47a4-a62c-adaf0a7950d2}">
         <settings calloutType="simple">
-          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0" namedStyle="Condensed Bold" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="6" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="75" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
+          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0" namedStyle="Condensed Bold" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="7" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="75" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
             <families/>
             <text-buffer bufferNoFill="1" bufferColor="0,0,0,255" bufferOpacity="1" bufferSize="0.5" bufferDraw="1" bufferSizeUnits="Point" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferJoinStyle="128" bufferBlendMode="0"/>
             <text-mask maskJoinStyle="128" maskType="0" maskedSymbolLayers="" maskSize="0.20000000000000001" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskEnabled="1" maskSizeUnits="MM" maskOpacity="1"/>
@@ -1156,7 +1156,7 @@
       </rule>
       <rule description="Vila" filter=" &quot;tipo&quot; = 4  and &quot;rotular_carta_mini&quot; = 1" key="{cdb02ad4-0d50-4ad6-92c3-020788dd26d8}">
         <settings calloutType="simple">
-          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0" namedStyle="Condensed" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="4.5" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="50" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
+          <text-style allowHtml="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0" namedStyle="Condensed" textColor="255,255,255,255" fieldName="texto_edicao" useSubstitutions="0" fontWordSpacing="0" fontStrikeout="0" blendMode="0" fontSize="5.5" previewBkgrdColor="255,255,255,255" fontLetterSpacing="0" fontKerning="1" fontFamily="Noto Sans" textOrientation="horizontal" fontSizeUnit="Point" fontWeight="50" fontItalic="0" textOpacity="1" fontUnderline="0" isExpression="0" multilineHeight="0.80000000000000004" legendString="Aa">
             <families/>
             <text-buffer bufferNoFill="1" bufferColor="0,0,0,255" bufferOpacity="1" bufferSize="0.5" bufferDraw="1" bufferSizeUnits="Point" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferJoinStyle="128" bufferBlendMode="0"/>
             <text-mask maskJoinStyle="128" maskType="0" maskedSymbolLayers="" maskSize="0.20000000000000001" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskEnabled="1" maskSizeUnits="MM" maskOpacity="1"/>

@@ -52,7 +52,7 @@
     <rules key="{640d9e51-bce3-4a8c-a7ea-d9893cae7a5d}">
       <rule key="{71797a9f-2371-493d-af2d-bd4222cf37ab}">
         <settings calloutType="simple">
-          <text-style fieldName="texto_edicao" legendString="Aa" fontStrikeout="0" previewBkgrdColor="255,255,255,255" fontUnderline="0" fontSize="6" namedStyle="Condensed Italic" textColor="255,255,255,255" multilineHeight="1" allowHtml="0" fontLetterSpacing="0" textOrientation="horizontal" blendMode="0" textOpacity="1" fontSizeUnit="Point" fontFamily="Noto Sans" fontKerning="1" isExpression="0" fontWordSpacing="0" fontWeight="50" fontItalic="1" useSubstitutions="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0">
+          <text-style fieldName="texto_edicao" legendString="Aa" fontStrikeout="0" previewBkgrdColor="255,255,255,255" fontUnderline="0" fontSize="7" namedStyle="Condensed Italic" textColor="255,255,255,255" multilineHeight="1" allowHtml="0" fontLetterSpacing="0" textOrientation="horizontal" blendMode="0" textOpacity="1" fontSizeUnit="Point" fontFamily="Noto Sans" fontKerning="1" isExpression="0" fontWordSpacing="0" fontWeight="50" fontItalic="1" useSubstitutions="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0">
             <families/>
             <text-buffer bufferBlendMode="0" bufferColor="0,160,223,255" bufferNoFill="0" bufferDraw="1" bufferSize="1" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferOpacity="1" bufferJoinStyle="128" bufferSizeUnits="Point">
               <effect type="effectStack" enabled="0">

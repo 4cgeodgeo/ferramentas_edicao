@@ -65,10 +65,10 @@
     <sizescale/>
   </renderer-v2>
   <labeling type="rule-based">
-    <rules key="{697b2433-f937-42bc-bd53-5888f62e6477}">
-      <rule filter=" &quot;rotular_carta_mini&quot; = 1" key="{51bac52f-2bc9-4a7f-addc-b9126ed4925b}" description="Ilha">
+    <rules key="{3282c21c-a3b0-415e-9025-79c22d743364}">
+      <rule filter=" &quot;rotular_carta_mini&quot; = 1" key="{c54a6c5c-2c55-47fd-9b5f-58b473c212e7}" description="Ilha">
         <settings calloutType="simple">
-          <text-style fontItalic="1" previewBkgrdColor="255,255,255,255" fontUnderline="0" useSubstitutions="0" textOpacity="1" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontWeight="50" allowHtml="0" fontWordSpacing="0" fontSize="4.5" multilineHeight="0.80000000000000004" isExpression="0" textColor="255,255,255,255" textOrientation="horizontal" fontStrikeout="0" namedStyle="Condensed Italic" fontKerning="1" capitalization="1" fontFamily="Noto Sans" fieldName="texto_edicao" legendString="Aa" fontSizeUnit="Point" fontLetterSpacing="0" blendMode="0">
+          <text-style fontItalic="1" previewBkgrdColor="255,255,255,255" fontUnderline="0" useSubstitutions="0" textOpacity="1" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontWeight="50" allowHtml="0" fontWordSpacing="0" fontSize="5.5" multilineHeight="0.80000000000000004" isExpression="0" textColor="255,255,255,255" textOrientation="horizontal" fontStrikeout="0" namedStyle="Condensed Italic" fontKerning="1" capitalization="1" fontFamily="Noto Sans" fieldName="texto_edicao" legendString="Aa" fontSizeUnit="Point" fontLetterSpacing="0" blendMode="0">
             <families/>
             <text-buffer bufferSizeUnits="Point" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferNoFill="1" bufferColor="0,0,0,255" bufferSize="0.5" bufferBlendMode="0" bufferDraw="1" bufferJoinStyle="128" bufferOpacity="1"/>
             <text-mask maskedSymbolLayers="" maskSize="0.20000000000000001" maskOpacity="1" maskType="0" maskSizeUnits="MM" maskEnabled="1" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskJoinStyle="128"/>

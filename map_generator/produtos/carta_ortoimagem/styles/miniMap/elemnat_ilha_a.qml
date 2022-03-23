@@ -52,7 +52,7 @@
     <rules key="{34385c75-b563-4fd9-8e68-2bdeca60dc0e}">
       <rule key="{d4200ebe-33d7-4f7e-a4a0-ab13c2963a24}" filter=" &quot;rotular_carta_mini&quot; = 1">
         <settings calloutType="simple">
-          <text-style fontUnderline="0" fontWordSpacing="0" fontSize="4.5" isExpression="0" namedStyle="Condensed Italic" fontLetterSpacing="0" textColor="255,255,255,255" fontFamily="Noto Sans" textOrientation="horizontal" previewBkgrdColor="255,255,255,255" fontKerning="1" fontStrikeout="0" useSubstitutions="0" textOpacity="1" fontItalic="1" capitalization="1" legendString="Aa" allowHtml="0" fontSizeUnit="Point" fontSizeMapUnitScale="3x:0,0,0,0,0,0" blendMode="0" fontWeight="50" multilineHeight="0.80000000000000004" fieldName="texto_edicao">
+          <text-style fontUnderline="0" fontWordSpacing="0" fontSize="5.5" isExpression="0" namedStyle="Condensed Italic" fontLetterSpacing="0" textColor="255,255,255,255" fontFamily="Noto Sans" textOrientation="horizontal" previewBkgrdColor="255,255,255,255" fontKerning="1" fontStrikeout="0" useSubstitutions="0" textOpacity="1" fontItalic="1" capitalization="1" legendString="Aa" allowHtml="0" fontSizeUnit="Point" fontSizeMapUnitScale="3x:0,0,0,0,0,0" blendMode="0" fontWeight="50" multilineHeight="0.80000000000000004" fieldName="texto_edicao">
             <families/>
             <text-buffer bufferSize="0.5" bufferJoinStyle="128" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferDraw="1" bufferNoFill="1" bufferBlendMode="0" bufferColor="0,0,0,255" bufferSizeUnits="Point" bufferOpacity="1"/>
             <text-mask maskSizeUnits="MM" maskOpacity="1" maskSize="0.20000000000000001" maskEnabled="1" maskType="0" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskedSymbolLayers="" maskJoinStyle="128"/>

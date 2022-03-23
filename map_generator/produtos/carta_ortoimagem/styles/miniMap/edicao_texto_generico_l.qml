@@ -22,8 +22,8 @@
             <Option type="QString" value="MM" name="dash_pattern_offset_unit"/>
             <Option type="QString" value="0" name="draw_inside_polygon"/>
             <Option type="QString" value="bevel" name="joinstyle"/>
-            <Option type="QString" value="125,139,143,255" name="line_color"/>
-            <Option type="QString" value="no" name="line_style"/>
+            <Option type="QString" value="255,0,0,255" name="line_color"/>
+            <Option type="QString" value="solid" name="line_style"/>
             <Option type="QString" value="0.26" name="line_width"/>
             <Option type="QString" value="MM" name="line_width_unit"/>
             <Option type="QString" value="0" name="offset"/>
@@ -50,8 +50,8 @@
           <prop k="dash_pattern_offset_unit" v="MM"/>
           <prop k="draw_inside_polygon" v="0"/>
           <prop k="joinstyle" v="bevel"/>
-          <prop k="line_color" v="125,139,143,255"/>
-          <prop k="line_style" v="no"/>
+          <prop k="line_color" v="255,0,0,255"/>
+          <prop k="line_style" v="solid"/>
           <prop k="line_width" v="0.26"/>
           <prop k="line_width_unit" v="MM"/>
           <prop k="offset" v="0"/>
@@ -81,8 +81,8 @@
     <sizescale/>
   </renderer-v2>
   <labeling type="rule-based">
-    <rules key="{43094ea4-b728-4e9c-9c79-fcc7bfb66a92}">
-      <rule key="{7b32a29f-d89f-42ac-9f54-913471e12be2}" filter=" &quot;carta_simbolizacao&quot; = 2" description="Carta principal">
+    <rules key="{d45abcab-7d09-4571-8e82-d645d9c8907e}">
+      <rule key="{103def28-1799-411d-9eeb-2a883acc6225}" filter=" &quot;carta_simbolizacao&quot; = 2" description="Carta principal">
         <settings calloutType="simple">
           <text-style fieldName="texto_edicao" legendString="Aa" fontStrikeout="0" previewBkgrdColor="255,255,255,255" fontUnderline="0" fontSize="16" namedStyle="Italic" textColor="255,255,255,255" multilineHeight="1" allowHtml="0" fontLetterSpacing="0" textOrientation="horizontal" blendMode="0" textOpacity="1" fontSizeUnit="Point" fontFamily="Noto Sans" fontKerning="1" isExpression="0" fontWordSpacing="0" fontWeight="50" fontItalic="1" useSubstitutions="0" fontSizeMapUnitScale="3x:0,0,0,0,0,0" capitalization="0">
             <families/>
